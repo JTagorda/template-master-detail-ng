@@ -15,7 +15,7 @@ copyConfig(tslintConfig);
 // Remove assets folder
 console.log('Removing assets folder');
 const assetsDir = path.join(__dirname, 'assets');
-deleteFodler(assetsDir);
+deleteFolder(assetsDir);
 
 function copyConfig(configFilename) {
     const oldPath = path.join(__dirname, configFilename);
@@ -27,7 +27,7 @@ function copyConfig(configFilename) {
     });
 }
 
-function deleteFodler(folderPath) {
+function deleteFolder(folderPath) {
     if (fs.statSync(folderPath).isDirectory()) {
         fs.readdirSync(folderPath).forEach(function (file) {
             let content = path.join(folderPath, file);
