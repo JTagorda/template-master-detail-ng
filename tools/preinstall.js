@@ -25,8 +25,8 @@ function copyConfig(configFilename) {
 function deleteFolder(folderPath) {
     if (fs.statSync(folderPath).isDirectory()) {
         fs.readdirSync(folderPath).forEach(function (file) {
-            let content = path.join(folderPath, file),
-                contentDirs = fs.statSync(content).isDirectory();
+            let content = path.join(folderPath, file);
+            let contentDirs = fs.statSync(content).isDirectory();
 
             if (contentDirs) {
                 deleteFolder(content);
