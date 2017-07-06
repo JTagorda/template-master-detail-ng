@@ -12,28 +12,26 @@ console.log("creating tslint.json to enable linting...");
 const tslintConfig = "tslint.json";
 copyConfig(tslintConfig);
 
-// Destroy tools folder along with all the contents including this preinstall script
+// Remove tools folder including this script
 console.log('Removing tools directory');
 deleteFolder(__dirname);
 
 function copyConfig(configFilename) {
     const oldPath = path.join(__dirname, configFilename);
     const newPath = path.join(getAppRootFolder(), configFilename);
-    fs.rename(oldPath, newPath, (err) => {
-        if (err) {
-            console.log(err);
-        }
-    });
+    fs.renameSync(oldPath, newPath);
 }
 
 function deleteFolder(folderPath) {
     if (fs.statSync(folderPath).isDirectory()) {
         fs.readdirSync(folderPath).forEach(function (file) {
-            let content = path.join(folderPath, file);
+            let content = path.join(folderPath, file),
+                contentDirs = fs.statSync(content).isDirectory();
 
-            if (fs.statSync(content).isDirectory()) {
-                delFodler(content);
+            if (contentDirs) {
+                deleteFolder(content);
             } else {
+
                 fs.unlinkSync(content);
             }
         });
