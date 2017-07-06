@@ -12,10 +12,9 @@ console.log("creating tslint.json to enable linting...");
 const tslintConfig = "tslint.json";
 copyConfig(tslintConfig);
 
-// Remove assets folder
-console.log('Removing assets folder');
-const assetsDir = path.join(__dirname, 'assets');
-deleteFolder(assetsDir);
+// Destroy tools folder along with all the contents including this preinstall script
+console.log('Removing tools directory');
+deleteFolder(__dirname);
 
 function copyConfig(configFilename) {
     const oldPath = path.join(__dirname, configFilename);
@@ -45,3 +44,4 @@ function deleteFolder(folderPath) {
 function getAppRootFolder() {
     return "../../../";
 }
+
