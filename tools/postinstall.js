@@ -15,25 +15,27 @@ console.log("Removing tools directory");
 deleteFolder(__dirname);
 
 function modifyPackageJson() {
-    let pjPath = path.join(process.cwd(), _getAppRootFolder(),"package.json");
+    let pjPath = path.join(process.cwd(), _getAppRootFolder(), "package.json");
     fs.readFile(pjPath, 'utf8', function (err, content) {
         if (err) {
             console.error(err);
-        } else {
-            content = JSON.parse(content);
-            content.scripts = {
-                lint: "tslint ./app/**/*.ts"
-            };
-
-            content = JSON.stringify(content);
-            fs.writeFile(pjPath, content, "utf8", function (err) {
-                if (err) {
-                    console.error(err);
-                } else {
-                    console.log(__dirname);
-                }
-            });
+            return;
         }
+
+        content = JSON.parse(content);
+        content.scripts = {
+            lint: "tslint ./app/**/*.ts"
+        };
+
+        content = JSON.stringify(content);
+        fs.writeFile(pjPath, content, "utf8", function (err) {
+            if (err) {
+                console.error(err);
+            } else {
+                console.log(__dirname);
+            }
+        });
+
     });
 }
 
