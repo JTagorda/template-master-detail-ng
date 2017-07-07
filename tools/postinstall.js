@@ -1,14 +1,21 @@
-'use strict';
+"use strict";
 
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 function _getAppRootFolder() {
     return "../../";
 }
 
+console.log("Updating package.json scripts");
+modifyPackageJson();
+
+// Remove tools folder including this script
+console.log("Removing tools directory");
+deleteFolder(__dirname);
+
 function modifyPackageJson() {
-    let pjPath = path.join(process.env.PWD, _getAppRootFolder(),'package.json');
+    let pjPath = path.join(process.cwd(), _getAppRootFolder(),"package.json");
     fs.readFile(pjPath, 'utf8', function (err, content) {
         if (err) {
             console.error(err);
@@ -19,7 +26,7 @@ function modifyPackageJson() {
             };
 
             content = JSON.stringify(content);
-            fs.writeFile(pjPath, content, 'utf8', function (err) {
+            fs.writeFile(pjPath, content, "utf8", function (err) {
                 if (err) {
                     console.error(err);
                 } else {
@@ -47,10 +54,3 @@ function deleteFolder(folderPath) {
     }
 }
 
-
-console.log('Updating package.json scripts');
-modifyPackageJson();
-
-// Remove tools folder including this script
-console.log('Removing tools directory');
-deleteFolder(__dirname);
