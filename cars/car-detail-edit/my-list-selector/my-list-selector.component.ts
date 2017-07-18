@@ -43,7 +43,7 @@ export class MyListSelectorComponent implements OnInit {
                 carId = params.id;
             });
 
-        this._car = this._carService.getCarById(carId);
+        this._car = this._carService.getEditableCarById(carId);
     }
 
     onSelectorTap(): void {

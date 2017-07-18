@@ -47,13 +47,14 @@ export class CarDetailEditComponent implements OnInit {
         * http://docs.nativescript.org/angular/core-concepts/angular-navigation.html#passing-parameter
         *************************************************************/
         let carId = "";
+
         this._pageRoute.activatedRoute
             .switchMap((activatedRoute) => activatedRoute.params)
             .forEach((params) => {
                 carId = params.id;
             });
 
-        this._car = this._carService.getCarById(carId);
+        this._car = this._carService.startEdit(carId);
     }
 
     get isAndroid(): boolean {
