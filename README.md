@@ -55,9 +55,9 @@ This template is set up to use SASS for styling. All classes used are based on t
 
 It has 4 global style files that are located at the root of the app folder:
 - `_app-variables.scss` - holds the global SASS variables that are imported on each component's styles.
-- `app.scss` - the global common style sheet. These style rules are applied to both Android and iOS.
-- `platform.android.scss` - the global Android style sheet. These style rules are applied to Android only.
-- `platform.ios.scss` - the global iOS style sheet. These style rules are applied to iOS only.
+- `_app-common.scss` - the global common style sheet. These style rules are applied to both Android and iOS.
+- `app.android.scss` - the global Android style sheet. These style rules are applied to Android only.
+- `app.ios.scss` - the global iOS style sheet. These style rules are applied to iOS only.
 
 Each component has 3 style files located in its folder:
 - `_page-name.scss` - the component common style sheet. These style rules are applied to both Android and iOS.
