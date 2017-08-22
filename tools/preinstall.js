@@ -6,11 +6,13 @@ console.log("preinstall script running...");
 
 const firebaseConfig = "firebase.nativescript.json";
 const tslintConfig = "tslint.json";
+const webpackConfig = "webpack.config.js";
 
 getAppRootFolder()
     .then((appRootFolder) => Promise.all([
         copyConfig(firebaseConfig, appRootFolder),
-        copyConfig(tslintConfig, appRootFolder)
+        copyConfig(tslintConfig, appRootFolder),
+        copyConfig(webpackConfig, appRootFolder),
     ]));
 
 function copyConfig(configFilename, appRootFolder) {
