@@ -13,7 +13,7 @@ const tempImageFolderName = "nsimagepicker";
     selector: "MyImageAddRemove",
     moduleId: module.id,
     templateUrl: "./my-image-add-remove.component.html",
-    styleUrls: ["./my-image-add-remove.component.css"]
+    styleUrls: ["./my-image-add-remove.component.scss"]
 })
 export class MyImageAddRemoveComponent {
     static get imageTempFolder(): Folder {

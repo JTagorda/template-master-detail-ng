@@ -10,4 +10,8 @@ import { AppModule } from "./app.module";
 *************************************************************/
 import "./shared/firebase.common";
 
-platformNativeScriptDynamic().bootstrapModule(AppModule);
+// Use custom ResourceLoader to be able to load ".scss" files from styleUrls of components
+// TODO: Remove this when it becomes build in nativescript-angular
+import { FileResourceLoaderProvider } from "./shared/file-resource-loader";
+
+platformNativeScriptDynamic(undefined, [FileResourceLoaderProvider]).bootstrapModule(AppModule);
