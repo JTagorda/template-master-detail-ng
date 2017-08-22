@@ -1,0 +1,34 @@
+// This is the place for all commons styles
+
+//Font icon
+.fa {
+   font-family: "FontAwesome";
+}
+//Action bar
+.action-item,
+NavigationButton {
+    color: $ab-color;
+}
+
+Slider{
+  background-color: $accent;
+  color: $accent;  
+}
+
+.text {
+    color: $blue-dark;
+}
+
+.text-primary {
+    color: $accent-dark;
+}
+
+.text-secondary {
+    color: $blue-50;
+}
+
+.page-content {
+    label {
+        font-size: $base-font-size;
+    }
+}
