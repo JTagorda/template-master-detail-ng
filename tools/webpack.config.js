@@ -8,8 +8,7 @@ const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const { AotPlugin } = require("@ngtools/webpack");
 
 const mainSheetCss = `app.css`;
-
-const extractSASS = new ExtractTextPlugin(mainSheetCss);
+const extractSassPlugin = new ExtractTextPlugin(mainSheetCss);
 
 module.exports = env => {
     const platform = getPlatform(env);
@@ -17,7 +16,6 @@ module.exports = env => {
 
     // Default destination inside platforms/<platform>/...
     const path = resolve(nsWebpack.getAppPath(platform));
-    // const path = __dirname + "/dist";
 
     const entry = {
         // Discover entry module from package.json
@@ -96,10 +94,10 @@ function getRules(mainSheetEntry) {
                 "raw-loader",
             ]
         },
-        // Root stylesheet gets extracted with bundled dependencies
+        // Compile and extract the main SASS file
         {
             test: new RegExp(mainSheetEntry),
-            use: extractSASS.extract([
+            use: extractSassPlugin.extract([
                 {
                     loader: "nativescript-css-loader", // "res://" handling
                     options: { minimize: false }
@@ -107,7 +105,7 @@ function getRules(mainSheetEntry) {
                 'sass-loader'
             ]),
         },
-        // SASS support
+        // SASS support. Only the mainSheetEntry needs to be extracted in a separate file 
         {
             test: /\.scss$/,
             exclude: new RegExp(mainSheetEntry),
@@ -117,7 +115,6 @@ function getRules(mainSheetEntry) {
                 "resolve-url-loader",
             ]
         },
-
 
         // Compile TypeScript files with ahead-of-time compiler.
         {
@@ -135,7 +132,7 @@ function getPlugins(platform, env) {
     let plugins = [
         // new ExtractTextPlugin("app.css"),
 
-        extractSASS,
+        extractSassPlugin,
 
 
         // Vendor libs go to the vendor.js chunk
