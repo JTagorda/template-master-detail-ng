@@ -35,4 +35,13 @@ $text-primary-font-size: $base-font-size + 2;
         width: 35;
         text-align: right;
     }
+
+    .ng-invalid {
+        border-left-color: $error-dark; 
+        border-left-width: 3;
+    }
+ 
+    .ng-invalid-image {
+        color: $error-dark;
+    }
 }
